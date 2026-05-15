@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor | AI Real Estate Insights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>AI House Price Predictor</h1>
+            <p>Predict real estate value using advanced machine learning models</p>
+        </header>
+
+        <main class="glass-card">
+            <form action="/predict" method="post">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="MedInc">Median Income (in $10k)</label>
+                        <input type="number" step="0.01" name="MedInc" id="MedInc" placeholder="e.g. 8.32" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="HouseAge">House Age (Years)</label>
+                        <input type="number" step="1" name="HouseAge" id="HouseAge" placeholder="e.g. 41" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="AveRooms">Avg Rooms</label>
+                        <input type="number" step="0.01" name="AveRooms" id="AveRooms" placeholder="e.g. 6.98" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="AveBedrms">Avg Bedrooms</label>
+                        <input type="number" step="0.01" name="AveBedrms" id="AveBedrms" placeholder="e.g. 1.02" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Population">Population</label>
+                        <input type="number" step="1" name="Population" id="Population" placeholder="e.g. 322" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="AveOccup">Avg Occupation</label>
+                        <input type="number" step="0.01" name="AveOccup" id="AveOccup" placeholder="e.g. 2.55" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Latitude">Latitude</label>
+                        <input type="number" step="0.0001" name="Latitude" id="Latitude" placeholder="e.g. 37.88" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Longitude">Longitude</label>
+                        <input type="number" step="0.0001" name="Longitude" id="Longitude" placeholder="e.g. -122.23" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="predict-btn">Generate Prediction</button>
+            </form>
+
+            {% if prediction_text %}
+            <div class="result-section">
+                <h3>Analysis Results</h3>
+                <p class="prediction">{{ prediction_text }}</p>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="error-section">
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>&copy; 2026 AI Real Estate Insights. Powered by Scikit-Learn & Flask.</p>
+        </footer>
+    </div>
+</body>
+</html>
